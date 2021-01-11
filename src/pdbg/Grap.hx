@@ -5,7 +5,7 @@ class Grap {
 	public static var engine: h3d.Engine;
 	public static var dad: h2d.Object;
 	
-	public static var tile: Map<String, h2d.Tile> = [];
+	static var tile: Map<String, h2d.Tile> = [];
 	
 	static var radiPi: Float = Math.PI / 180;
 	
