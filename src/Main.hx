@@ -4,16 +4,16 @@ import pdbg.*;
 import hxd.Res;
 
 class Main extends hxd.App {
-    static function main() {
+	static function main() {
 		new Main();
-    }
+    	}
 	
 	override public function onResize() {
 		super.onResize();
 		pdbg.Grap.resize();
 	}
 	
-    override function init() {
+	override function init() {
 		// res init.
 		#if hl
 			hxd.res.Resource.LIVE_UPDATE = true;
@@ -35,7 +35,7 @@ class Main extends hxd.App {
 		
 		// Mouse init.
 		pdbg.Mouse.init();
-    }
+	}
 	
 	override function update(dt: Float) {
 		super.update(dt);
