@@ -103,7 +103,7 @@ class Grap {
 	}
 
 	// Copy.
-	public static function copy(name: String, x: Float, y: Float) : h2d.Object {
+	public static function sprite(name: String, x: Float, y: Float) : h2d.Object {
 		var obj = new h2d.Object(dad);
 		var t = tile[name];
 		t = t.center();
@@ -115,7 +115,7 @@ class Grap {
 		return obj;
 	}
 	
-	public static function sdlCopy(name: String, srcX: Float, srcY: Float, w: Float, h: Float, dstX: Float, dstY: Float) : h2d.Object {
+	public static function copy(name: String, srcX: Float, srcY: Float, w: Float, h: Float, dstX: Float, dstY: Float) : h2d.Object {
 		var obj = new h2d.Object(dad);
 		var t = tile[name].sub(srcX, srcY, w, h, 1, 1);
 		t = t.center();
