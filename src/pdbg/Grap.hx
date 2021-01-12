@@ -93,12 +93,36 @@ class Grap {
 		obj.filter = new h2d.filter.Blur(a);
 	}
 	
+	public static function objectRotate(obj: h2d.Object, r: Float) {
+		obj.rotate(radiPi * r);
+	}
+	
+	public static function objectZoom(obj: h2d.Object, dx: Float, dy: Float) {
+		obj.scaleX = dx;
+		obj.scaleY = dy;
+	}
+
 	// Copy.
 	public static function copy(name: String, x: Float, y: Float) : h2d.Object {
 		var obj = new h2d.Object(dad);
-		new h2d.Bitmap(tile[name], obj);
-		obj.x = x;
-		obj.y = y;
+		var t = tile[name];
+		t = t.center();
+		new h2d.Bitmap(t, obj);
+
+		obj.y = y + (t.height / 2);
+		obj.x = x + (t.width / 2);
+				
+		return obj;
+	}
+	
+	public static function sdlCopy(name: String, srcX: Float, srcY: Float, w: Float, h: Float, dstX: Float, dstY: Float) : h2d.Object {
+		var obj = new h2d.Object(dad);
+		var t = tile[name].sub(srcX, srcY, w, h, 1, 1);
+		t = t.center();
+		new h2d.Bitmap(t, obj);
+
+		obj.y = dstX + (t.height / 2);
+		obj.x = dstY + (t.width / 2);
 				
 		return obj;
 	}
@@ -112,8 +136,8 @@ class Grap {
 		
 		obj.scaleX = dx;
 		obj.scaleY = dy;
-		obj.x = x + (t.width / 2);
 		obj.y = y + (t.height / 2);
+		obj.x = x + (t.width / 2);
 		
 		if (r != null) {
 			obj.rotate(radiPi * r);
