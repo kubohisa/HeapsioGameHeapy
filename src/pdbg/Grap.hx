@@ -127,7 +127,7 @@ class Grap {
 		return obj;
 	}
 	
-	public static function copyDx(name: String, x: Float, y: Float, dx: Float, dy: Float, ?r: Float)  :h2d.Object {
+	public static function spriteDx(name: String, x: Float, y: Float, dx: Float, dy: Float, ?r: Float)  :h2d.Object {
 		var obj = new h2d.Object(dad);
 
 		var t = tile[name];
