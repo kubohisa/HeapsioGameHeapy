@@ -18,6 +18,7 @@ class Loop {
 	}
 	
 	public static function gameEnd () {
+		pdbg.Pad.end();
 		pdbg.Grap.end();
 		hxd.System.exit();
 	}
