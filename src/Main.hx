@@ -35,6 +35,9 @@ class Main extends hxd.App {
 		
 		// Mouse init.
 		pdbg.Mouse.init();
+		
+		// Pad init.
+		pdbg.Pad.init();
 	}
 	
 	override function update(dt: Float) {
