@@ -5,6 +5,7 @@ class Pad {
 
 	public static var padX: Float;
 	public static var padY: Float;
+	public static var button: Map<String, Float> = [];
 
 	public static function init() {
 		hxd.Pad.wait(onPad);
@@ -43,6 +44,21 @@ class Pad {
 			}
 		}
 
-		//trace(padY);
+		button = [
+			"A" => pad.values[ conf.A ],
+			"B" => pad.values[ conf.B ],
+			"X" => pad.values[ conf.X ],
+			"Y" => pad.values[ conf.Y ],
+			"RB" => pad.values[ conf.RB ],
+			"RT" => pad.values[ conf.RT ],
+			"LB" => pad.values[ conf.LB ],
+			"LT" => pad.values[ conf.LT ],
+			"start" => pad.values[ conf.start ],
+			"back" => pad.values[ conf.back ],
+			"analogClick" => pad.values[ conf.analogClick ],
+			"ranalogClick" => pad.values[ conf.ranalogClick ]
+		];
+
+		//trace(button["RT"]);
 	}
 }
