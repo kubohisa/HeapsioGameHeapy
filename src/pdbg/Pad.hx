@@ -3,8 +3,6 @@ package pdbg;
 class Pad {
 	static var pad : hxd.Pad;
 
-	public static var padX: Float;
-	public static var padY: Float;
 	public static var button: Map<String, Float> = [];
 	public static var buttonPrev: Map<String, Float> = [];
 
@@ -13,6 +11,7 @@ class Pad {
 	}
 
 	public static function end() {
+		buttonPrev = [];
 		button = [];
 	}
 
@@ -29,27 +28,11 @@ class Pad {
 	// https://heaps.io/api/hxd/Pad.html
 	public static function get() {
 		var conf = pad.config;
-
-		padX = Std.int(pad.values[ conf.analogX ]);
-		if (padX == 0) {
-			if (Std.int(pad.values[ conf.dpadLeft ]) == 1) {
-				padX = -1;
-			} else if (Std.int(pad.values[ conf.dpadRight ]) == 1) {
-				padX = 1;
-			}
-		}
-
-
-		padY = -Std.int(pad.values[ conf.analogY ]);
-		if (padY == 0) {
-			if (Std.int(pad.values[ conf.dpadUp ]) == 1) {
-				padY = -1;
-			} else if (Std.int(pad.values[ conf.dpadDown ]) == 1) {
-				padY = 1;
-			}
-		}
-
+		
 		buttonPrev = [
+			"padX" => button["padX"],
+			"padY" => button["padY"],
+
 			"A" => button["A"],
 			"B" => button["B"],
 			"X" => button["X"],
@@ -62,7 +45,30 @@ class Pad {
 			"ranalogClick" => button["ranalogClick"]
 		];
 
+		var padX = Std.int(pad.values[ conf.analogX ]);
+		if (padX == 0) {
+			if (Std.int(pad.values[ conf.dpadLeft ]) == 1) {
+				padX = -1;
+			}
+			if (Std.int(pad.values[ conf.dpadRight ]) == 1) {
+				padX = 1;
+			}
+		}
+
+		var padY = -Std.int(pad.values[ conf.analogY ]);
+		if (padY == 0) {
+			if (Std.int(pad.values[ conf.dpadUp ]) == 1) {
+				padY = -1;
+			}
+			if (Std.int(pad.values[ conf.dpadDown ]) == 1) {
+				padY = 1;
+			}
+		}
+
 		button = [
+			"padX" => padX,
+			"padY" => padY,
+
 			"A" => pad.values[ conf.A ],
 			"B" => pad.values[ conf.B ],
 			"X" => pad.values[ conf.X ],
@@ -76,5 +82,7 @@ class Pad {
 			"analogClick" => pad.values[ conf.analogClick ],
 			"ranalogClick" => pad.values[ conf.ranalogClick ]
 		];
+
+		//trace(button["padX"]+":"+buttonPrev["padX"]);
 	}
 }
