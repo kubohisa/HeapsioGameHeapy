@@ -11,6 +11,10 @@ class Pad {
 		hxd.Pad.wait(onPad);
 	}
 
+	public static function end() {
+		button = [];
+	}
+
 	static function onPad(p: hxd.Pad) {
 		pad = p;
 
