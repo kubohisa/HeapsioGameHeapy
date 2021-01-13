@@ -76,7 +76,5 @@ class Pad {
 			"analogClick" => pad.values[ conf.analogClick ],
 			"ranalogClick" => pad.values[ conf.ranalogClick ]
 		];
-
-		trace(button["A"]+":"+buttonPrev["A"]);
 	}
 }
