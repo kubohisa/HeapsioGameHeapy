@@ -16,9 +16,9 @@ class Pad {
 
 		//if( !p.connected ) throw "Pad not connected ?";
     	
-    	p.onDisconnect = function(){
-    		//if( p.connected ) throw "OnDisconnect called while still connected ?";
-    	}
+		p.onDisconnect = function(){
+			//if( p.connected ) throw "OnDisconnect called while still connected ?";
+		}
 	}
 
 	// https://heaps.io/api/hxd/Pad.html
