@@ -43,6 +43,6 @@ class Pad {
 			}
 		}
 
-		trace(padY);
+		//trace(padY);
 	}
 }
