@@ -27,6 +27,8 @@ class Loop {
 		pdbg.Grap.fullScreen();
 		pdbg.Grap.clearDisp();
 		
+		pdbg.Pad.get();
+		
 		switch (mode){
 			case "Title":
 				ModeTitle.exec(state);
