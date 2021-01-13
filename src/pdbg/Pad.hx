@@ -6,6 +6,7 @@ class Pad {
 	public static var padX: Float;
 	public static var padY: Float;
 	public static var button: Map<String, Float> = [];
+	public static var buttonPrev: Map<String, Float> = [];
 
 	public static function init() {
 		hxd.Pad.wait(onPad);
@@ -19,7 +20,7 @@ class Pad {
 		pad = p;
 
 		//if( !p.connected ) throw "Pad not connected ?";
-    	
+		
 		p.onDisconnect = function(){
 			//if( p.connected ) throw "OnDisconnect called while still connected ?";
 		}
@@ -48,6 +49,19 @@ class Pad {
 			}
 		}
 
+		buttonPrev = [
+			"A" => button["A"],
+			"B" => button["B"],
+			"X" => button["X"],
+			"Y" => button["Y"],
+			"RB" => button["RB"],
+			"LB" => button["LB"],
+			"start" => button["start"],
+			"back" => button["back"],
+			"analogClick" => button["analogClick"],
+			"ranalogClick" => button["ranalogClick"]
+		];
+
 		button = [
 			"A" => pad.values[ conf.A ],
 			"B" => pad.values[ conf.B ],
@@ -63,6 +77,6 @@ class Pad {
 			"ranalogClick" => pad.values[ conf.ranalogClick ]
 		];
 
-		//trace(button["RT"]);
+		trace(button["A"]+":"+buttonPrev["A"]);
 	}
 }
