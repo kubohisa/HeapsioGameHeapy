@@ -18,6 +18,7 @@ class Loop {
 	}
 	
 	public static function gameEnd () {
+		pdbg.Sound.end();
 		pdbg.Pad.end();
 		pdbg.Grap.end();
 		hxd.System.exit();
@@ -29,7 +30,7 @@ class Loop {
 		pdbg.Grap.clearDisp();
 		
 		pdbg.Pad.get();
-		
+
 		switch (mode){
 			case "Title":
 				ModeTitle.exec(state);
@@ -40,5 +41,5 @@ class Loop {
 		pdbg.Mouse.reset();
 		
 		pdbg.Grap.fps();
-    }
+	}
 }
