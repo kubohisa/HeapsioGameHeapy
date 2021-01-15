@@ -6,7 +6,7 @@ import hxd.Res;
 class Main extends hxd.App {
 	static function main() {
 		new Main();
-    	}
+	}
 	
 	override public function onResize() {
 		super.onResize();
@@ -35,9 +35,12 @@ class Main extends hxd.App {
 		
 		// Mouse init.
 		pdbg.Mouse.init();
-		
+
 		// Pad init.
 		pdbg.Pad.init();
+
+		// Sound init.
+		pdbg.Sound.init();
 	}
 	
 	override function update(dt: Float) {
