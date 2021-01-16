@@ -13,6 +13,8 @@ class Pad {
 	public static function end() {
 		buttonPrev = [];
 		button = [];
+		buttonPrev = null;
+		button = null;
 	}
 
 	static function onPad(p: hxd.Pad) {
@@ -26,7 +28,50 @@ class Pad {
 	}
 
 	// https://heaps.io/api/hxd/Pad.html
-	public static function get() {
+	public static function get(name: String) {
+		if (button[name] == null) {
+			return null;
+		}
+
+		// RT LT
+		if (buttonPrev[name] == null) {
+			return button[name];
+		}
+
+		//
+		if (name == "padX" || name == "padY") {
+			if (button[name] + buttonPrev[name] == 0) {
+				button[name] = 0;
+				buttonPrev[name] = 0;
+			}
+		}
+
+		//
+		if (buttonPrev[name] == 0) {
+			if (button[name] == 0) {
+				return 0;
+			} else {
+				return 1;
+			}
+		} else {
+			if (button[name] != 0) {
+				return 2;
+			} else {
+				return 3;
+			}
+		}
+	}
+
+	public static function padX() {
+		return button["padX"];
+	}
+
+	public static function padY() {
+		return button["padY"];
+	}
+
+	// Get pads at loop.
+	public static function hold() {
 		var conf = pad.config;
 		
 		buttonPrev = [
