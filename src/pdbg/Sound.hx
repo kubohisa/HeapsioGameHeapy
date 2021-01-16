@@ -32,8 +32,7 @@ class Sound {
 	{
 		if (volume >= 0 && volume <= 100) {
 			masterVol = volume;
-
-			manager.masterVolume = masterVol / 100;
+			manager.masterVolume = volume / 100;
 		}
 	}
 
@@ -103,6 +102,7 @@ class Sound {
 	// 効果音のデータが無いのでデバッグ出来てない
 	static var se: Map<String, hxd.snd.Channel> = [];
 	static var seVol: Map<String, Int>;
+	static var seMasterVol: Int = 100;
 
 	public static function sePlay(name: String, file: String) {
 		var sound: hxd.res.Sound = hxd.Res.loader.load("se/" + file + ".ogg").toSound();
@@ -132,8 +132,15 @@ class Sound {
 	{
 		if (volume >= 0 && volume <= 100) {
 			seVol[name] = volume;
+			se[name].volume = volume / 100;
+		}
+	}
 
-			se[name].volume = seVol[name] / 100;
+	public static function seMasterVolume(volume: Int)
+	{
+		if (volume >= 0 && volume <= 100) {
+			seMasterVol = volume;
+			seChGroup.volume = volume / 100;
 		}
 	}
 }
