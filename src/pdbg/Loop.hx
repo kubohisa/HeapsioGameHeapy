@@ -15,8 +15,15 @@ class Loop {
 	public static function changeMode (str: String) {
 		nextState("start");
 		mode = str;
+
+		gc();
 	}
 	
+	public static function gc () {
+		var cache = new hxd.impl.CacheAllocator();
+		cache.gc();		
+	}
+
 	public static function gameEnd () {
 		pdbg.Sound.end();
 		pdbg.Pad.end();
@@ -29,7 +36,7 @@ class Loop {
 		pdbg.Grap.fullScreen();
 		pdbg.Grap.clearDisp();
 		
-		pdbg.Pad.get();
+		pdbg.Pad.hold();
 
 		switch (mode){
 			case "Title":
