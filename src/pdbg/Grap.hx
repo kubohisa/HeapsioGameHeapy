@@ -21,12 +21,11 @@ class Grap {
 		parent.defaultSmooth = true;
 		backgroundColor(0xff000000);
 		makeDisp();
-		
-//		tileResize(100);
 	}
 	
 	public static function end() {
 		tileClear();
+		tile = null;
 		dad.remove();
 		dad = null;
 	}
@@ -68,10 +67,6 @@ class Grap {
 		tile[name] = hxd.Res.loader.load("images/"+file).toTile();
 	}
 	
-/*	public static function tileResize(no: Int) {
-		tile.resize(no);
-	}
-*/	
 	public static function tileClear() {
 		tile = [];
 	}
@@ -119,8 +114,8 @@ class Grap {
 		
 		obj.scaleX = dx;
 		obj.scaleY = dy;
-		obj.y = y + (t.height / 2);
-		obj.x = x + (t.width / 2);
+		obj.y = y + (obj.getSize().height / 2);
+		obj.x = x + (obj.getSize().width / 2);
 		
 		if (r != null) {
 			obj.rotate(radiPi * r);
@@ -135,20 +130,22 @@ class Grap {
 		t = t.center();
 		new h2d.Bitmap(t, obj);
 
-		obj.y = dstX + (t.height / 2);
-		obj.x = dstY + (t.width / 2);
+		obj.y = dstX + (obj.getSize().height / 2);
+		obj.x = dstY + (obj.getSize().width / 2);
 				
 		return obj;
 	}
 	
 	public static function copyDx(name: String, srcX: Float, srcY: Float, w: Float, h: Float, dx: Float, dy: Float, dstX: Float, dstY: Float) : h2d.Object {
 		var obj = new h2d.Object(dad);
-		var t = tile[name].sub(srcX, srcY, w, h, dx, dy);
+		var t = tile[name].sub(srcX, srcY, w, h, 1, 1);
 		t = t.center();
 		new h2d.Bitmap(t, obj);
 
-		obj.y = dstX + (t.height / 2);
-		obj.x = dstY + (t.width / 2);
+		obj.scaleX = dx;
+		obj.scaleY = dy;
+		obj.y = dstX + (obj.getSize().height / 2);
+		obj.x = dstY + (obj.getSize().width / 2);
 				
 		return obj;
 	}
