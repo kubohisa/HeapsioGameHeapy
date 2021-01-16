@@ -6,18 +6,23 @@ class Sound {
 
 	static var manager: hxd.snd.Manager;
 
+	static var musicChGroup: hxd.snd.ChannelGroup;
+	static var seChGroup: hxd.snd.ChannelGroup;
+
 	// init.
 	public static function init() {
 		manager = hxd.snd.Manager.get();
 		masterVolume(masterVol);
 		manager.masterSoundGroup.maxAudible = 6;
+
+		musicChGroup = new hxd.snd.ChannelGroup("music");
+		seChGroup = new hxd.snd.ChannelGroup("se");
 	}
 
 	public static function end() {
-		manager.stopAll();
-		manager.cleanCache();
-		seVol = [];
-		se = [];
+		clean();
+		seVol = null;
+		se = null;
 	}
 
 	// Master.
@@ -32,6 +37,14 @@ class Sound {
 		}
 	}
 
+	public static function clean()
+	{
+		manager.stopAll();
+		manager.cleanCache();
+		seVol = [];
+		se = [];
+	}
+
 	// Back ground Mauic.
 	static var musicChannel: hxd.snd.Channel;
 	static var musicVol: Int = 100;
@@ -40,7 +53,7 @@ class Sound {
 		var sound: hxd.res.Sound = hxd.Res.loader.load("musics/" + file + ".ogg").toSound();
 
 		if(sound != null){
-			musicChannel = sound.play(true, musicVol / 100);
+			musicChannel = sound.play(true, musicVol / 100, musicChGroup);
 		}
 	}
 
@@ -87,7 +100,7 @@ class Sound {
 	}
 
 	// SE.
-	// 効果音のデータが無いためデバッグは出来てない
+	// 効果音のデータが無いのでデバッグ出来てない
 	static var se: Map<String, hxd.snd.Channel> = [];
 	static var seVol: Map<String, Int>;
 
@@ -97,7 +110,7 @@ class Sound {
 		if (seVol[name] == null) seVol[name] = 100;
 
 		if(sound != null){
-			se[name] = sound.play(true, seVol[name] / 100);
+			se[name] = sound.play(true, seVol[name] / 100, seChGroup);
 		}
 	}
 
