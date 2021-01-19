@@ -8,11 +8,6 @@ class Main extends hxd.App {
 		new Main();
 	}
 	
-	override public function onResize() {
-		super.onResize();
-		pdbg.Grap.resize();
-	}
-	
 	override function init() {
 		// res init.
 		#if hl
@@ -21,30 +16,30 @@ class Main extends hxd.App {
 		#else
 			hxd.Res.initEmbed();
 		#end
+
+		// DOS窓を閉じる（exe限定）
+		hl.UI.closeConsole();
 		
-		// Rand init.
+		// Init.
 		pdbg.Rand.init();
-		
-		// Loop seting.
-		pdbg.Loop.changeMode("Title");
-		
-		// grap init.
+		pdbg.Loop.init();
 		pdbg.Grap.init(s2d, engine);			// Global s2d.
-		//pdbg.Grap.windowTitle("abcdefg");
-		onResize();
-		
-		// Mouse init.
 		pdbg.Mouse.init();
-
-		// Pad init.
 		pdbg.Pad.init();
-
-		// Sound init.
 		pdbg.Sound.init();
+
+		pdbg.Loop.changeMode("Title");
+		pdbg.Grap.resize();
+		//pdbg.Grap.windowTitle("abcdefg");
 	}
 	
 	override function update(dt: Float) {
 		super.update(dt);
 		pdbg.Loop.loop();
+	}
+
+	override public function onResize() {
+		super.onResize();
+		pdbg.Grap.resize();
 	}
 }
