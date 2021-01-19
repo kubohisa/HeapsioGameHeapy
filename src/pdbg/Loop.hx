@@ -5,7 +5,12 @@ import mode.title.*;
 class Loop {
 	static var mode: String;
 	static var state: String;
-	
+
+	// Init.
+	public static function init() {
+		hxd.Timer.wantedFPS = 60;
+	}
+
 	// Api.
 	public static function nextState (str: String) {
 		//trace(str);
@@ -17,6 +22,7 @@ class Loop {
 		mode = str;
 
 		gc();
+		hxd.Timer.reset();
 	}
 	
 	public static function gc () {
@@ -28,9 +34,12 @@ class Loop {
 		pdbg.Sound.end();
 		pdbg.Pad.end();
 		pdbg.Grap.end();
+
 		hxd.System.exit();
 	}
 	
+	static var fpsCount: Int = 0;
+
 	// Loop.
 	public static function loop() {
 		pdbg.Grap.fullScreen();
