@@ -50,13 +50,13 @@ class Loop {
 		
 		pdbg.Pad.hold();
 
-		pdbg.Grap.fpsTime = Date.now().getTime();
 		switch (mode){
 			case "Title":
 				ModeTitle.exec(state);
 			default:
 				pdbg.Grap.error("Loop.loop " + mode);
 		}
+		
 		pdbg.Grap.fps();
 		
 		pdbg.Mouse.reset();		
