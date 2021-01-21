@@ -168,16 +168,16 @@ class Grap {
 	}
 	
 	static var fpsCounter: Int = 60;
-	static var fpsNow: Float = 0;
+	static var fpsNow: Float;
 
 	public static var fpsTime: Float = 0;
-	static var fpsHold: Float = 0;
+	static var fpsHold: Float;
 	
 	// Remake.
 	public static function fps() {
-		var t = haxe.Timer.stamp();
+		var t = Sys.time() * 1000;
 		if (fpsCounter == 60) {
-			fpsNow = fpsHold;
+			fpsNow = fpsHold / 60;
 
 			fpsCounter = 1;
 			fpsHold = t - fpsTime;
