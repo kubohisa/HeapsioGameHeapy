@@ -167,22 +167,30 @@ class Grap {
 		font("Error: "+text, 0, 30, 26);
 	}
 	
-	static var fpsCounter: Int = 0;
-	static var fpsPrev: Float = 0;
-	static var fpsAdd: Float = 0;
+	static var fpsCounter: Int = 1;
+	static var fpsNow: Float = 0;
+
+	public static var fpsTime: Float;
+	static var fpsHold: Float;
 	
+	// Remake.
 	public static function fps() {
 		var obj = new h2d.Object(dad);
 		new h2d.Bitmap(h2d.Tile.fromColor(0xff000000, dispX, 30, 0.6), obj);
 
-		if (fpsCounter == 5) {
-			fpsPrev = fpsAdd / 6;
-			fpsCounter = 0;
-			fpsAdd = hxd.Timer.fps();
+		if (fpsCounter == 60) {
+			var t = Date.now().getTime();
+			fpsNow = 1000 - fpsHold / 60;
+
+			fpsCounter = 1;
+			fpsHold = t - fpsTime;
 		} else {
+			var t = Date.now().getTime();
+
 			fpsCounter++;
-			fpsAdd += hxd.Timer.fps();
+			fpsHold += t - fpsTime;
 		}
-		font("FPS: " + fpsPrev, 0, 0, 26);
+
+		font("FPS: " + fpsNow, 0, 0, 26);
 	}
 }
