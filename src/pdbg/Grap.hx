@@ -188,7 +188,8 @@ class Grap {
 			fpsCounter++;
 			fpsHold += t - fpsTime;
 		}
-
+		fpsTime = t;
+		
 		font("FPS: " + fpsNow, 0, 0, 26);
 	}
 }
