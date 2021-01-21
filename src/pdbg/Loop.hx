@@ -8,7 +8,7 @@ class Loop {
 
 	// Init.
 	public static function init() {
-		hxd.Timer.wantedFPS = 60;
+		fpsSet(60);
 	}
 
 	// Api.
@@ -22,9 +22,12 @@ class Loop {
 		mode = str;
 
 		gc();
-		hxd.Timer.reset();
 	}
 	
+	public static function fpsSet(t: Float) {
+		hxd.Timer.wantedFPS = t;
+	}
+
 	public static function gc () {
 		var cache = new hxd.impl.CacheAllocator();
 		cache.gc();		
@@ -47,15 +50,15 @@ class Loop {
 		
 		pdbg.Pad.hold();
 
+		pdbg.Grap.fpsTime = Date.now().getTime();
 		switch (mode){
 			case "Title":
 				ModeTitle.exec(state);
 			default:
 				pdbg.Grap.error("Loop.loop " + mode);
 		}
-		
-		pdbg.Mouse.reset();
-		
 		pdbg.Grap.fps();
+		
+		pdbg.Mouse.reset();		
 	}
 }
