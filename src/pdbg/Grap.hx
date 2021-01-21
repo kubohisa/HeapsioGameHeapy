@@ -177,7 +177,7 @@ class Grap {
 	public static function fps() {
 		var t = haxe.Timer.stamp();
 		if (fpsCounter == 60) {
-			fpsNow = 1000 - fpsHold;
+			fpsNow = fpsHold;
 
 			fpsCounter = 1;
 			fpsHold = t - fpsTime;
