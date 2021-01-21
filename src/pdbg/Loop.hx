@@ -50,6 +50,8 @@ class Loop {
 		
 		pdbg.Pad.hold();
 
+		pdbg.Grap.fpsTime = haxe.Timer.stamp();		
+
 		switch (mode){
 			case "Title":
 				ModeTitle.exec(state);
