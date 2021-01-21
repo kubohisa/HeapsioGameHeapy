@@ -167,20 +167,17 @@ class Grap {
 		font("Error: "+text, 0, 30, 26);
 	}
 	
-	static var fpsCounter: Int = 1;
+	static var fpsCounter: Int = 60;
 	static var fpsNow: Float = 0;
 
-	public static var fpsTime: Float;
-	static var fpsHold: Float;
+	public static var fpsTime: Float = 0;
+	static var fpsHold: Float = 0;
 	
 	// Remake.
 	public static function fps() {
-		var obj = new h2d.Object(dad);
-		new h2d.Bitmap(h2d.Tile.fromColor(0xff000000, dispX, 30, 0.6), obj);
-
-		var t = Date.now().getTime();
+		var t = haxe.Timer.stamp();
 		if (fpsCounter == 60) {
-			fpsNow = 1000 - fpsHold / 60;
+			fpsNow = 1000 - fpsHold;
 
 			fpsCounter = 1;
 			fpsHold = t - fpsTime;
@@ -188,8 +185,9 @@ class Grap {
 			fpsCounter++;
 			fpsHold += t - fpsTime;
 		}
-		fpsTime = t;
 		
+		var obj = new h2d.Object(dad);
+		new h2d.Bitmap(h2d.Tile.fromColor(0xff000000, dispX, 30, 0.6), obj);
 		font("FPS: " + fpsNow, 0, 0, 26);
 	}
 }
