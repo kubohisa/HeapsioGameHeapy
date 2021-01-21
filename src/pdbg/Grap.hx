@@ -178,15 +178,13 @@ class Grap {
 		var obj = new h2d.Object(dad);
 		new h2d.Bitmap(h2d.Tile.fromColor(0xff000000, dispX, 30, 0.6), obj);
 
+		var t = Date.now().getTime();
 		if (fpsCounter == 60) {
-			var t = Date.now().getTime();
 			fpsNow = 1000 - fpsHold / 60;
 
 			fpsCounter = 1;
 			fpsHold = t - fpsTime;
 		} else {
-			var t = Date.now().getTime();
-
 			fpsCounter++;
 			fpsHold += t - fpsTime;
 		}
