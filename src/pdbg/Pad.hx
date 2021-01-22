@@ -22,6 +22,8 @@ class Pad {
 		pad = p;
 
 		if( !p.connected ) {
+		} else {
+			noPad = 1;
 		}
 
 		p.onDisconnect = function() {
