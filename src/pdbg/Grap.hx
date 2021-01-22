@@ -175,9 +175,9 @@ class Grap {
 	
 	// Remake.
 	public static function fps() {
-		var t = Sys.time() * 1000;
+		var t = Sys.time() * 100000;
 		if (fpsCounter == 60) {
-			fpsNow = fpsHold / 60;
+			fpsNow = 100000 - fpsHold;
 
 			fpsCounter = 1;
 			fpsHold = t - fpsTime;
@@ -188,6 +188,6 @@ class Grap {
 		
 		var obj = new h2d.Object(dad);
 		new h2d.Bitmap(h2d.Tile.fromColor(0xff000000, dispX, 30, 0.6), obj);
-		font("FPS: " + fpsNow, 0, 0, 26);
+		font("FPS: " + fpsNow + "/100000.", 0, 0, 26);
 	}
 }
