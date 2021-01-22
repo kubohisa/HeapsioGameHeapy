@@ -50,7 +50,7 @@ class Loop {
 		
 		pdbg.Pad.hold();
 
-		pdbg.Grap.fpsTime = Sys.time() * 1000;		
+		pdbg.Grap.fpsTime = Sys.time() * 100000;	
 
 		switch (mode){
 			case "Title":
