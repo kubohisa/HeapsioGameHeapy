@@ -50,7 +50,7 @@ class Loop {
 		pdbg.Pad.hold();
 
 		#if debug
-		pdbg.Grap.fpsTime = Sys.time() * 100000;
+		pdbg.Grap.fpsTime = Sys.time() * 100000; // haxe.Timer.stamp() at html5.
 		#end
 
 		switch (mode) {

@@ -174,7 +174,7 @@ class Grap {
 	public static var fpsTime:Float = 0;
 
 	public static function fps() {
-		var t = Sys.time() * 100000;
+		var t = Sys.time() * 100000; // haxe.Timer.stamp() at html5.
 		if (fpsCounter == 60) {
 			fpsNow = (100000 - fpsHold) / 100000;
 

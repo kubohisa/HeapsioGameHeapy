@@ -2,6 +2,7 @@ package pdbg;
 
 class Pad {
 	static var pad:hxd.Pad;
+	static var noPad:Int = 0; // Not connect GamePad.
 
 	public static var button:Map<String, Float> = [];
 	public static var buttonPrev:Map<String, Float> = [];
@@ -20,7 +21,8 @@ class Pad {
 	static function onPad(p:hxd.Pad) {
 		pad = p;
 
-		// if( !p.connected ) throw "Pad not connected ?";
+		if( !p.connected ) {
+		}
 
 		p.onDisconnect = function() {
 			// if( p.connected ) throw "OnDisconnect called while still connected ?";
@@ -72,6 +74,8 @@ class Pad {
 
 	// Get pads at loop.
 	public static function hold() {
+		if (noPad == 0) return;
+
 		var conf = pad.config;
 
 		buttonPrev = [
