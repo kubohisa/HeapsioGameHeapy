@@ -18,9 +18,8 @@ class Main extends hxd.App {
 		#end
 
 		// DOS窓を閉じる（exe限定）
-		#if debug
+		// コンソールでのプリントデバッグは不可能
 		hl.UI.closeConsole();
-		#end
 
 		// Init.
 		pdbg.Rand.init();
