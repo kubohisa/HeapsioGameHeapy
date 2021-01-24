@@ -33,6 +33,10 @@ class Pad {
 		}
 	}
 
+	public static function conecction(){
+		return padConnect;
+	}
+
 	// https://heaps.io/api/hxd/Pad.html
 	public static function get(name:String) {
 		if (button[name] == null) {
