@@ -171,12 +171,23 @@ class Grap {
 	static var fpsNow:Float;
 	static var fpsHold:Float;
 
-	public static var fpsTime:Float = 0;
+	static var fpsTime:Float = 0;
+
+	static function systemTime() {
+		return Sys.time() * 100000;
+		// return haxe.Timer.stamp() * 100000; // haxe.Timer.stamp() at html5.
+	}
+
+	public static function fpsSet() {
+		fpsTime = systemTime();
+	}
 
 	public static function fps() {
-		var t = Sys.time() * 100000; // haxe.Timer.stamp() at html5.
+		var t = systemTime();
+
 		if (fpsCounter == 60) {
-			fpsNow = (100000 - fpsHold) / 100000;
+			// fpsNow = (100000 - fpsHold) / 100000;
+			fpsNow = fpsHold / 100000;
 
 			fpsCounter = 1;
 			fpsHold = t - fpsTime;
