@@ -14,7 +14,3 @@ https://nogamenoprograming.amebaownd.com/posts/12562936
 
 （他の人と被ったのでタイトルを変更）
 
-### TODO.
-
-DirectXでゲームパッドが使えない。SDLなら使える
-
