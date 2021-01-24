@@ -186,8 +186,8 @@ class Grap {
 		var t = systemTime();
 
 		if (fpsCounter == 60) {
-			// fpsNow = (100000 - fpsHold) / 100000;
-			fpsNow = fpsHold / 100000;
+			fpsNow = (100000 - fpsHold) / 100000 / 60;
+			// fpsNow = fpsHold / 100000 / 60; // Buggy.
 
 			fpsCounter = 1;
 			fpsHold = t - fpsTime;
@@ -200,6 +200,6 @@ class Grap {
 		new h2d.Bitmap(h2d.Tile.fromColor(0xff000000, dispX, 30, 0.6), obj);
 
 		var str:String = "" + fpsNow;
-		font("FPS: " + StringTools.rpad(str, "0", 13) + "/1sec.", 0, 0, 26);
+		font("FPS: " + StringTools.rpad(str, "0", 19) + "/60.", 0, 0, 26);
 	}
 }
