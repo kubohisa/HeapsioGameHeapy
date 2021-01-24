@@ -187,6 +187,8 @@ class Grap {
 
 		var obj = new h2d.Object(dad);
 		new h2d.Bitmap(h2d.Tile.fromColor(0xff000000, dispX, 30, 0.6), obj);
-		font("FPS: " + fpsNow + "/1sec.", 0, 0, 26);
+
+		var str:String = "" + fpsNow;
+		font("FPS: " + StringTools.rpad(str, "0", 13) + "/1sec.", 0, 0, 26);
 	}
 }

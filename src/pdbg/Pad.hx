@@ -2,7 +2,7 @@ package pdbg;
 
 class Pad {
 	static var pad:hxd.Pad;
-	static var noPad:Int = 0; // Not connect GamePad.
+	public static var padConnect:Int = 0; // Not connect GamePad.
 
 	public static var button:Map<String, Float> = [];
 	public static var buttonPrev:Map<String, Float> = [];
@@ -21,20 +21,22 @@ class Pad {
 	static function onPad(p:hxd.Pad) {
 		pad = p;
 
-		if( !p.connected ) {
+		if (!p.connected) {
+			padConnect = 0;
 		} else {
-			noPad = 1;
+			padConnect = 1;
 		}
 
 		p.onDisconnect = function() {
 			// if( p.connected ) throw "OnDisconnect called while still connected ?";
+			padConnect = 2;
 		}
 	}
 
 	// https://heaps.io/api/hxd/Pad.html
 	public static function get(name:String) {
 		if (button[name] == null) {
-			return null; // Null to error window.
+			return 0.0;
 		}
 
 		// RT LT
@@ -76,7 +78,8 @@ class Pad {
 
 	// Get pads at loop.
 	public static function hold() {
-		if (noPad == 0) return;
+		if (padConnect == 0)
+			return;
 
 		var conf = pad.config;
 
