@@ -1,6 +1,6 @@
 # HeapsioGameHeapy
 
-Heaps.ioでゲームを作ろうと思った。Lintしてないので少しソースが崩れてますが。まだ、試作品の状態ですが、ソースを見せた方が速いなと
+Heaps.ioでゲームを作ろうと思った。まだ、試作品の状態ですが、ソースを見せた方が速いなと
 
 オリジナルのウェブは<br>
 https://nogamenoprograming.amebaownd.com/posts/12562936
@@ -13,8 +13,4 @@ https://nogamenoprograming.amebaownd.com/posts/12562936
 実装優先でデバッグ出来てない部分が多いので、ゲームを作りながらデバッグします
 
 （他の人と被ったのでタイトルを変更）
-
-### TODO.
-
-DirectXでゲームパッドが使えない。SDLなら使える
 
