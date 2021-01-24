@@ -82,7 +82,7 @@ class Pad {
 
 	// Get pads at loop.
 	public static function hold() {
-		if (padConnect == 0)
+		if (padConnect != 1)
 			return;
 
 		var conf = pad.config;
