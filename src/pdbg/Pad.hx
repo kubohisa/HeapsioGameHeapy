@@ -28,12 +28,15 @@ class Pad {
 		}
 
 		p.onDisconnect = function() {
-			// if( p.connected ) throw "OnDisconnect called while still connected ?";
-			padConnect = 2;
+			if (p.connected) {
+				padConnect = 3;
+			} else {
+				padConnect = 2;
+			}
 		}
 	}
 
-	public static function conecction(){
+	public static function conecction() {
 		return padConnect;
 	}
 
