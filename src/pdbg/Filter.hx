@@ -5,6 +5,7 @@ class Filter {
 
 	public static function init() {
 		m = new h3d.Matrix();
+		m.identity();
 	}
 
 	public static function set(o:h2d.Object) {
@@ -12,6 +13,10 @@ class Filter {
 	}
 
 	// URL: https://heaps.io/api/h3d/Matrix.html
+	public static function colorHue(h:Float) {
+		m.colorHue(h);
+	}
+
 	public static function colorLightness(l:Float) {
 		m.colorLightness(l);
 	}
