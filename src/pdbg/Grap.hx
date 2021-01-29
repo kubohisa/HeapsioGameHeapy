@@ -200,6 +200,6 @@ class Grap {
 		new h2d.Bitmap(h2d.Tile.fromColor(0xff000000, dispX, 30, 0.6), obj);
 
 		var str:String = "" + fpsNow;
-		font("FPS: " + StringTools.rpad(str, "0", 19) + "/60.", 0, 0, 26);
+		font("FPS: " + StringTools.rpad(str, "0", 18) + "/60.", 0, 0, 26);
 	}
 }
