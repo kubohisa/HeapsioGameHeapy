@@ -103,7 +103,7 @@ class PdbgFilterEdge extends h3d.shader.ScreenShader {
 		}
 		function colorGet(x:Int, y:Int):Vec4 {
 			return texture.get(input.uv + vec2(x / width, y / height));
-			//return texture.get(vec2(x / width, y / width));
+			//return texture.get(vec2(x / width, y / height));
 		}
 	}
 
