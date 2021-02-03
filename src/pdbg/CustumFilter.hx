@@ -57,6 +57,7 @@ class PdbgFilterEdge extends h3d.shader.ScreenShader {
 	static var SRC = {
 		@param var texture:Sampler2D;
 		@param var width:Float;
+		@param var height:Float;
 		function fragment() {
 			var edge:Float = 0.6;
 
@@ -101,12 +102,14 @@ class PdbgFilterEdge extends h3d.shader.ScreenShader {
 			}
 		}
 		function colorGet(x:Int, y:Int):Vec4 {
-			return texture.get(input.uv + vec2(x / width, y / width));
+			return texture.get(input.uv + vec2(x / width, y / height));
+			//return texture.get(vec2(x / width, y / width));
 		}
 	}
 
 	public function new(obj:h2d.Object) {
 		super();
 		width = obj.getSize().width;
+		height = obj.getSize().height;
 	}
 }
