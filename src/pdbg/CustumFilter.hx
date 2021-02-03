@@ -20,7 +20,7 @@ class CustumFilter {
 		return new h2d.filter.Shader(new PdbgFilterMonochrome());
 	}
 
-	public static function colorEdge(obj:h2d.Object) {
+	public static function antiAliasing(obj:h2d.Object) {
 		return new h2d.filter.Shader(new PdbgFilterEdge(obj));
 	}
 }
@@ -58,29 +58,50 @@ class PdbgFilterEdge extends h3d.shader.ScreenShader {
 		@param var texture:Sampler2D;
 		@param var width:Float;
 		function fragment() {
+			var edge:Float = 0.6;
+
 			var pixelColor:Vec4 = texture.get(input.uv);
 			var pc:Float = (pixelColor.r + pixelColor.g + pixelColor.b) / 3;
 
-			var ac:Float = 0.0;
+			var flag = 0;
 
 			for (y in -1...1) {
 				for (x in -1...1) {
 					if (x == 0 && y == 0)
 						continue;
 
-					var a:Vec4 = texture.get(input.uv + vec2(x / width, y / width));
+					var a:Vec4 = colorGet(x, y);
 					var c:Float = (a.r + a.g + a.b) / 3;
 
 					if (pc == c)
 						continue;
-					if (abs(pc - c) >= 0.6) {
-						ac = 1.0;
+					if (abs(pc - c) >= edge) {
+						flag = 1;
 						break;
 					}
 				}
 			}
 
-			output.color = vec4(ac, ac, ac, 1.0);
+			if (flag == 0) {
+				output.color = pixelColor;
+			} else {
+				// Blur.
+				var sc:Vec4 = colorGet(-1, 0) * 0.25;
+				sc += colorGet(1, 0) * 0.25;
+				sc += colorGet(0, -1) * 0.25;
+				sc += colorGet(0, 1) * 0.25;
+
+				var sc1:Vec4 = colorGet(-1, -1) * 0.25;
+				sc1 += colorGet(1, -1) * 0.25;
+				sc1 += colorGet(-1, 1) * 0.25;
+				sc1 += colorGet(1, 1) * 0.25;
+
+				sc = pixelColor * 0.5 + sc * 0.33 + sc1 * 0.17;
+				output.color = vec4(sc.r, sc.g, sc.b, 1.0);
+			}
+		}
+		function colorGet(x:Int, y:Int):Vec4 {
+			return texture.get(input.uv + vec2(x / width, y / width));
 		}
 	}
 
